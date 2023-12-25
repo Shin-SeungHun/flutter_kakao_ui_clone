@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_kakao_ui_clone/chatting_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,19 +62,30 @@ class _KaKaoTalkAppScreenState extends State<KaKaoTalkAppScreen> {
       ),
       body: ListView(
         children: [
-          Column(
-            children: [
-              Container(
-                height: 100,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage(
-                    'assets/image/bugerking.jpeg',
-                  ),
-                )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: 100,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/image/bugerking.jpeg'),
+                ),
               ),
-            ],
-          )
+            ),
+          ),
+          Column(
+            children: List.generate(
+              10, // Change this to the number of ChattingList widgets you want
+              (i) => ChattingList(
+                name: '권은비',
+                content: 'door',
+                // Use a different content for each item
+                dateTime: getRandomDateTime(),
+                imagePath:
+                    'https://i.namu.wiki/i/50wzdMly_CgrDeqejTs2eL10XsqRsRmxQJwE1GQRK2Bm8cIc-bb9no7N3Phx0aNIl8wWREefNEazObWfqNYopYXDquZMCi0urxQBr07ELctzErVHyQovC8eFoxNjQ98T5cNsW66JrmrxyqD450_ALw.webp',
+              ),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -89,11 +103,30 @@ class _KaKaoTalkAppScreenState extends State<KaKaoTalkAppScreen> {
               label: '오픈 채팅'),
           BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag_outlined, color: Colors.white),
-              label: '쇼현'),
+              label: '쇼핑'),
           BottomNavigationBarItem(
               icon: Icon(Icons.more_horiz, color: Colors.white), label: '더보기'),
         ],
       ),
     );
+  }
+
+  DateTime getRandomDateTime() {
+    Random random = Random();
+
+    // 현재 날짜
+    DateTime now = DateTime.now();
+
+    // 날짜를 랜덤하게 생성하기 위해 1년 전부터 현재까지의 기간을 설정
+    DateTime oneYearAgo = DateTime(now.year - 1, now.month, now.day);
+
+    // 랜덤하게 생성된 기간을 계산
+    int randomDays = random.nextInt(now.difference(oneYearAgo).inDays);
+    Duration randomDuration = Duration(days: randomDays);
+
+    // 랜덤한 날짜를 계산
+    DateTime randomDateTime = oneYearAgo.add(randomDuration);
+
+    return randomDateTime;
   }
 }
