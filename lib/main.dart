@@ -31,28 +31,52 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text('채팅', style: TextStyle(color: Colors.white),),
-        actions: const [
-          IconButton(
-            onPressed: null,
-            icon: Icon(Icons.search, color: Colors.white),
-            color: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: const Text(
+            '채팅',
+            style: TextStyle(color: Colors.white),
           ),
-          IconButton(
-            onPressed: null,
-            icon: Icon(Icons.add_comment, color: Colors.white),
-            color: Colors.white,
-          ),
-          IconButton(
-            onPressed: null,
-            icon: Icon(Icons.settings, color: Colors.white),
-            color: Colors.white,
-          )
-        ],
-      ),
-    );
+          actions: const [
+            IconButton(
+              onPressed: null,
+              icon: Icon(Icons.search, color: Colors.white),
+              color: Colors.white,
+            ),
+            IconButton(
+              onPressed: null,
+              icon: Icon(Icons.add_comment, color: Colors.white),
+              color: Colors.white,
+            ),
+            IconButton(
+              onPressed: null,
+              icon: Icon(Icons.settings, color: Colors.white),
+              color: Colors.white,
+            )
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.black,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person, color: Colors.white), label: '친구'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.chat_bubble, color: Colors.white),
+                label: '채팅'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.bubble_chart_sharp, color: Colors.white),
+                label: '오픈 채팅'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag_outlined, color: Colors.white),
+                label: '쇼핑'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.more_horiz, color: Colors.white),
+                label: '더보기'),
+          ],
+        ));
   }
 }
